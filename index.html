@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-SYSTEM | Content Intelligence Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --accent: #ff007a;
+            --bg: #050a18;
+            --surface: rgba(255, 255, 255, 0.03);
+            --text: #ffffff;
+            --text-muted: #a0aec0;
+            --glow: rgba(0, 210, 255, 0.3);
+            --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 6rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .section {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            padding: 4rem;
+            border-radius: 2.5rem;
+            margin-bottom: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.02);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, var(--glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .section:hover {
+            transform: translateY(-10px) scale(1.01);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 210, 255, 0.15);
+        }
+
+        .section:hover::after {
+            opacity: 1;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 32px;
+            background: var(--accent-gradient);
+            border-radius: 4px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .api-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.4rem;
+            color: var(--secondary);
+            font-family: 'Fira Code', monospace;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 6rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+                filter: blur(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">D-SYSTEM</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="demo.html">Live Demo</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>D-SYSTEM</h1>
+            <p class="tagline">Next-Gen YouTube Intelligence & Content Strategy</p>
+        </header>
+
+        <section class="section">
+            <h2>Visionary Analytics</h2>
+            <p>D-SYSTEM is a private intelligence hub built for elite content creators. We bridge the gap between
+                creative intuition and raw data, providing real-time visibility into the ever-shifting landscape of
+                global video trends. Our platform transforms YouTube metadata into actionable strategy, ensuring every
+                production choice is backed by comprehensive data science.</p>
+        </section>
+
+        <section class="section">
+            <span class="api-badge">Technical Infrastructure</span>
+            <h2>YouTube Data API v3 Integration</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Trend Discovery</h3>
+                    <p>Utilizing <code>search.list</code> with advanced relevancy sorting to capture rising niche
+                        categories before they hit the mainstream.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Metric Deep-Dives</h3>
+                    <p>Leveraging <code>videos.list</code> for granular data harvesting: view velocity, engagement
+                        ratios, and demographic patterns.</p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
+                Our integration strictly adheres to Google Cloud Platform's compliance standards, ensuring data
+                integrity while maximizing the value of YouTube's information ecosystem for creators.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Core Technologies</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>HitScore™</h3>
+                    <p>A multi-factor algorithm analyzing view-to-subscriber ratios to identify content that outperforms
+                        its peer group.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>V-Momentum</h3>
+                    <p>Tracking the exact acceleration ofDiscovery views to predict viral sustainability.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>UCB Keywords</h3>
+                    <p>Machine-learned keyword selection that balances exploration of new niches with exploitation of
+                        proven trends.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Visual Insights</h3>
+                    <p>Real-time data visualization dashboard designed for rapid strategic pivot during production
+                        cycles.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <nav class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="https://www.youtube.com/t/terms" target="_blank">YouTube ToS</a>
+                <a href="mailto:contact@d-system.io">Inquiries</a>
+            </nav>
+            <p>&copy; 2026 TrendFinder (D-SYSTEM). All rights reserved.</p>
+            <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.5;">
+                By using this site, you agree to the <a href="https://www.youtube.com/t/terms" target="_blank"
+                    style="color: var(--text-muted)">YouTube Terms of Service</a>.
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

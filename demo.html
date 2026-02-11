@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Demo | D-SYSTEM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --bg: #050a18;
+            --surface: rgba(255, 255, 255, 0.03);
+            --text: #ffffff;
+            --text-muted: #a0aec0;
+            --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            --score-high: #00ff88;
+            --score-mid: #fbff00;
+            --score-low: #ff0055;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--score-high);
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--surface);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+        }
+
+        .thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .score-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .upload-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 3.1rem;
+        }
+
+        .channel-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .metrics {
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 6rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">D-SYSTEM</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="demo.html" class="active">Live Demo</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <span class="demo-badge">Interactive Simulation</span>
+            <h1>Intelligence Dashboard</h1>
+            <p style="color: var(--text-muted)">Real-time data visualization of viral content candidates.</p>
+        </header>
+
+        <div class="grid" id="demo-grid">
+            <!-- Cards will be populated by JS -->
+        </div>
+
+        <footer>
+            <nav class="footer-links" style="margin-bottom: 1rem; display: flex; justify-content: center; gap: 1.5rem;">
+                <a href="privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+                <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
+                <a href="https://www.youtube.com/t/terms" target="_blank"
+                    style="color: var(--text-muted); text-decoration: none;">YouTube ToS</a>
+            </nav>
+            <p>&copy; 2026 TrendFinder (D-SYSTEM). Demo using simulated data points.</p>
+            <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.5;">
+                By using this demo, you agree to the <a href="https://www.youtube.com/t/terms" target="_blank"
+                    style="color: var(--text-muted)">YouTube Terms of Service</a>.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const mockVideos = [
+            {
+                title: "만만해 보이는 사람 99%가 하는 실수 (뇌과학이 말하는 2초의 비밀)",
+                channel_title: "브레인바이츠",
+                subscribers: 8270,
+                views: 235151,
+                published_at: "2026-02-01",
+                trend_score: 82.8,
+                performance_ratio: 2843.4,
+                thumbnail: "https://i.ytimg.com/vi/n5OQJBdjeL8/hqdefault.jpg"
+            },
+            {
+                title: "착한 사람이 관계를 끊어버리는 이유 (절대 안 돌아옴)",
+                channel_title: "마인드풀 메이트 Mindful Mate",
+                subscribers: 12100,
+                views: 204422,
+                published_at: "2025-12-24",
+                trend_score: 60.6,
+                performance_ratio: 1689.4,
+                thumbnail: "https://i.ytimg.com/vi/TKWV1zF6xbU/hqdefault.jpg"
+            },
+            {
+                title: "나이 들면 형제자매라도 멀어지는 이유 5가지",
+                channel_title: "육각형",
+                subscribers: 9760,
+                views: 546287,
+                published_at: "2025-09-02",
+                trend_score: 51.5,
+                performance_ratio: 5597.2,
+                thumbnail: "https://i.ytimg.com/vi/p0jqanKjgnA/hqdefault.jpg"
+            },
+            {
+                title: "20년지기 친구 손절 | 인간관계 정리 후...",
+                channel_title: "언제나 다래",
+                subscribers: 7560,
+                views: 388695,
+                published_at: "2025-08-16",
+                trend_score: 48.1,
+                performance_ratio: 5141.5,
+                thumbnail: "https://i.ytimg.com/vi/TdQnIJhR16o/hqdefault.jpg"
+            },
+            {
+                title: "착한 사람일수록 손해보는 이유",
+                channel_title: "관계의 민낯",
+                subscribers: 4290,
+                views: 63132,
+                published_at: "2025-12-20",
+                trend_score: 42.5,
+                performance_ratio: 1471.6,
+                thumbnail: "https://i.ytimg.com/vi/OG_m0bJIvuM/hqdefault.jpg"
+            }
+        ];
+
+        const grid = document.getElementById('demo-grid');
+        mockVideos.forEach(video => {
+            const scoreColor = video.trend_score >= 70 ? 'var(--score-high)' :
+                video.trend_score >= 40 ? 'var(--score-mid)' : 'var(--score-low)';
+
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="thumbnail-container">
+                    <img class="thumbnail" src="${video.thumbnail}" alt="Thumbnail">
+                    <div class="score-badge" style="background-color: ${scoreColor}">
+                        HitScore: ${video.trend_score}
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="upload-date">📅 ${video.published_at}</div>
+                    <h2 class="video-title">${video.title}</h2>
+                    <div class="channel-info">
+                        <span>${video.channel_title}</span>
+                        <span>Subs: ${video.subscribers.toLocaleString()}</span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric-item">
+                            <span class="metric-label">Views</span>
+                            <span class="metric-value">${video.views.toLocaleString()}</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Perf Ratio</span>
+                            <span class="metric-value">${video.performance_ratio}x</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>

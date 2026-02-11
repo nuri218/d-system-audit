@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | D-SYSTEM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #38bdf8;
+            --bg: #020617;
+            --surface: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">D-SYSTEM</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="demo.html">Live Demo</a>
+                <a href="privacy.html" class="active">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: February 10, 2026</p>
+
+        <section>
+            <h2>1. Introduction</h2>
+            <p>D-SYSTEM ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how
+                we collect and use information from the YouTube Data API v3 within our internal analytics platform.</p>
+        </section>
+
+        <section>
+            <h2>2. Information Collection</h2>
+            <p>We access data provided through the YouTube Data API v3 as authorized under the YouTube Terms of Service.
+                This data includes:</p>
+            <ul>
+                <li>Public video metadata (titles, descriptions, thumbnails).</li>
+                <li>Public engagement metrics (view counts, like counts).</li>
+                <li>Public channel information (subscriber counts).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Use of Data and Retention</h2>
+            <p>All data accessed through the API is used exclusively for internal analytical purposes to provide content
+                intelligence and trend discovery. We implement strict data minimization policies:</p>
+            <ul>
+                <li><strong>Retention Period</strong>: Locally cached YouTube API data is stored for a maximum of
+                    <strong>1 to 7 days</strong> to ensure real-time accuracy and compliance.</li>
+                <li><strong>No Third-Party Sharing</strong>: We do not share, sell, or rent any data derived from the
+                    YouTube API to third parties.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. Data Protection</h2>
+            <p>We implement industry-standard security measures to safeguard the data we process. By using our service,
+                you agree to be bound by the <a href="https://www.youtube.com/t/terms" target="_blank"
+                    style="color: var(--primary)">YouTube Terms of Service</a> and the <a
+                    href="https://policies.google.com/privacy" target="_blank" style="color: var(--primary)">Google
+                    Privacy Policy</a>.</p>
+        </section>
+
+        <section>
+            <h2>5. Compliance</h2>
+            <p>By using our service, you agree to be bound by the <a href="https://www.youtube.com/t/terms"
+                    target="_blank" style="color: var(--primary)">YouTube Terms of Service</a> and the <a
+                    href="https://policies.google.com/privacy" target="_blank" style="color: var(--primary)">Google
+                    Privacy Policy</a>.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 D-SYSTEM International. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
